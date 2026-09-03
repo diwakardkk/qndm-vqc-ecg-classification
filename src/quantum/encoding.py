@@ -1,0 +1,2 @@
+from .ansatz import encode
+

@@ -1,0 +1,51 @@
+experiment:
+  name: full
+  output_dir: output
+  resume: true
+  force: false
+  backend: numpy_statevector_cpu
+data:
+  dataset_dir: "MIT-BIH Arrhythmia"
+  task: aami_nv
+  strict_labels: false
+  ds1_records: [101, 106, 108, 109, 112, 114, 115, 116, 118, 119, 122, 124, 201, 203, 205, 207, 208, 209, 215, 220, 223, 230]
+  ds2_records: [100, 103, 105, 111, 113, 117, 121, 123, 200, 202, 210, 212, 213, 214, 219, 221, 222, 228, 231, 232, 233, 234]
+  exclude_records: [102, 104, 107, 217]
+  validation_records: [119, 208, 223, 230]
+  fs: 360
+  window_before_sec: 0.25
+  window_after_sec: 0.45
+  bandpass_low_hz: 0.5
+  bandpass_high_hz: 40.0
+  filter_order: 3
+  channel_preference: ["MLII", "ML2", "II", "V5", "V1"]
+  max_beats_per_record_per_class: null
+features:
+  qubits: [4, 6, 8]
+  angle_clip_quantile: 0.99
+  angle_range: 3.141592653589793
+sampling:
+  train_beats_per_class: 1000
+  val_beats_per_class: 300
+  test_beats_per_class: null
+quantum:
+  layers: [1, 2, 3]
+  primary_layers: 2
+  regimes: ["A", "B", "C"]
+  lambda_values: [0.0001, 0.0002, 0.0005, 0.001, 0.002, 0.005, 0.01, 0.02, 0.05, 0.1]
+  shots: [100, 250, 500, 1000, 2000, 5000]
+  shot_repeats: 10
+  parameter_shift_s: 1.5707963267948966
+training:
+  methods: ["analytic", "parameter_shift", "qndm"]
+  seeds: [42, 123, 456, 789, 2026]
+  epochs: 15
+  batch_size: 32
+  learning_rate: 0.015
+  optimizer: adam
+  threshold: 0.0
+statistics:
+  bootstrap_replicates: 1000
+classical_baselines:
+  enabled: true
+
