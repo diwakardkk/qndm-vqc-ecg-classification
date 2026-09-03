@@ -149,31 +149,6 @@ Typical outputs include:
 
 These files are ignored by Git because they can be large and are reproducible from the code and configuration.
 
-## LaTeX Report Package
-
-After running experiments, a compact LaTeX package can be generated locally:
-
-```bash
-python scripts/build_latex_package.py
-```
-
-This creates:
-
-```text
-output/qndm_ecg_latex_package.zip
-output/latex_package/main.tex
-output/latex_package/figures/
-```
-
-The LaTeX package is not committed to GitHub.
-
-## Tests
-
-Run the test suite with:
-
-```bash
-pytest -q
-```
 
 The tests cover:
 
